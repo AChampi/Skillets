@@ -60,6 +60,11 @@ variables:
 # There is a variable called snippets that we can use to auto-generate this section for us
 snippets:
 
+  - name: timezone-521884
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/deviceconfig/system
+    element: |-
+        <timezone>Europe/Paris</timezone>
+
   - name: hostname-490452
     xpath: /config/devices/entry[@name="localhost.localdomain"]/deviceconfig/system
     element: |-
