@@ -31,14 +31,6 @@ variables:
     description: Firewall hostname
     default: myFirewall
     type_hint: text
-  - name: ntp-server-1
-    description: Firewall first ntp server
-    default: ntp0.oleane.net
-    type_hint: fqdn_or_ip
-  - name: ntp-server-2
-    description: Firewall second ntp server
-    default: 194.2.0.58
-    type_hint: fqdn_or_ip
 # ---------------------------------------------------------------------
 # end of variables section
 
@@ -57,18 +49,28 @@ snippets:
     element: |-
         <hostname>{{hostname}}</hostname>
 
+  - name: dns-setting-874624
+    xpath: /config/devices/entry[@name="localhost.localdomain"]/deviceconfig/system
+    element: |-
+        <dns-setting>
+                    <servers>
+                      <primary>9.9.9.9</primary>
+                      <secondary>9.9.9.9</secondary>
+                    </servers>
+                  </dns-setting>
+
   - name: ntp-servers-753448
     xpath: /config/devices/entry[@name="localhost.localdomain"]/deviceconfig/system
     element: |-
         <ntp-servers>
                     <primary-ntp-server>
-                      <ntp-server-address>{{ntp-server-1}}</ntp-server-address>
+                      <ntp-server-address>ntp0.oleane.net</ntp-server-address>
                       <authentication-type>
                         <none/>
                       </authentication-type>
                     </primary-ntp-server>
                     <secondary-ntp-server>
-                      <ntp-server-address>{{ntp-server-2}}</ntp-server-address>
+                      <ntp-server-address>ntp1.oleane.net</ntp-server-address>
                       <authentication-type>
                         <none/>
                       </authentication-type>
