@@ -31,6 +31,22 @@ variables:
     description: Firewall hostname
     default: myFirewall
     type_hint: text
+  - name: dns_server_1
+    description: Firewall first dns server
+    default: 9.9.9.9
+    type_hint: ip_address
+  - name: dns_server_2
+    description: Firewall second dns server
+    default: 9.9.9.9
+    type_hint: ip_address
+  - name: ntp_server_1
+    description: Firewall first ntp server
+    default: ntp0.oleane.net
+    type_hint: fqdn_or_ip
+  - name: ntp_server_2
+    description: Firewall second ntp server
+    default: 194.2.0.58
+    type_hint: fqdn_or_ip
 # ---------------------------------------------------------------------
 # end of variables section
 
@@ -54,8 +70,8 @@ snippets:
     element: |-
         <dns-setting>
                     <servers>
-                      <primary>9.9.9.9</primary>
-                      <secondary>9.9.9.9</secondary>
+                      <primary>{{dns_server_1}}</primary>
+                      <secondary>{{dns_server_2}}</secondary>
                     </servers>
                   </dns-setting>
 
@@ -64,13 +80,13 @@ snippets:
     element: |-
         <ntp-servers>
                     <primary-ntp-server>
-                      <ntp-server-address>ntp0.oleane.net</ntp-server-address>
+                      <ntp-server-address>{{ntp_server_1}}</ntp-server-address>
                       <authentication-type>
                         <none/>
                       </authentication-type>
                     </primary-ntp-server>
                     <secondary-ntp-server>
-                      <ntp-server-address>ntp1.oleane.net</ntp-server-address>
+                      <ntp-server-address>{{ntp_server_2}}</ntp-server-address>
                       <authentication-type>
                         <none/>
                       </authentication-type>
